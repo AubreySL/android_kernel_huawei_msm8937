@@ -72,9 +72,12 @@
 #include <linux/fs_struct.h>
 #include <linux/compat.h>
 #include <linux/ctype.h>
+<<<<<<< HEAD
 #include <linux/uaccess.h>
+=======
 #include <linux/string.h>
 #include <uapi/linux/limits.h>
+>>>>>>> 628306a... audit: create private file name copies when auditing inodes
 
 #include "audit.h"
 
