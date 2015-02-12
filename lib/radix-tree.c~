@@ -33,7 +33,12 @@
 #include <linux/string.h>
 #include <linux/bitops.h>
 #include <linux/rcupdate.h>
+<<<<<<< HEAD
 #include <linux/preempt.h>		/* in_interrupt() */
+=======
+#include <linux/preempt_mask.h>		/* in_interrupt() */
+>>>>>>> c1128a8... lib/radix-tree.c: change to simpler include
+
 
 /*
  * The height_to_maxindex array needs to be one deeper than the maximum
