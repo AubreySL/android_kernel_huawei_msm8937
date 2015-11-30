@@ -845,7 +845,11 @@ static int rawv6_sendmsg(struct kiocb *iocb, struct sock *sk,
 	if (!opt) {
 		opt = txopt_get(np);
 		opt_to_free = opt;
+<<<<<<< HEAD
+		}
+=======
 	}
+>>>>>>> 46ddb98... ipv6: add complete rcu protection around np->opt
 	if (flowlabel)
 		opt = fl6_merge_options(&opt_space, flowlabel, opt);
 	opt = ipv6_fixup_options(&opt_space, opt);
