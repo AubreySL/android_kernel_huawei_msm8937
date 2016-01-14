@@ -651,7 +651,7 @@ static void pty_unix98_shutdown(struct tty_struct *tty)
 	else
 		ptmx_inode = tty->link->driver_data;
 	devpts_kill_index(ptmx_inode, tty->index);
-	iput(ptmx_inode); /* drop reference we acquired at ptmx_open */
+	devpts_del_ref(ptmx_inode);
 }
 
 static const struct tty_operations ptm_unix98_ops = {
@@ -754,7 +754,7 @@ static int ptmx_open(struct inode *inode, struct file *filp)
 	 * destroyed (devpts instance unmounted), before /dev/tty is closed and
 	 * on its release devpts_kill_index is called.
 	 */
-	ihold(inode);
+	devpts_add_ref(inode);
 
 	tty_add_file(tty, filp);
 
