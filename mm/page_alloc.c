@@ -629,7 +629,7 @@ continue_merging:
 
 			if (migratetype != buddy_mt
 					&& (is_migrate_isolate(migratetype) ||
-					is_migrate_isolate(buddy_mt)))
+						is_migrate_isolate(buddy_mt)))
 				goto done_merging;
 		}
 		max_order++;
@@ -827,8 +827,9 @@ static void __free_pages_ok(struct page *page, unsigned int order)
 	local_irq_restore(flags);
 }
 
-void __free_pages_bootmem(struct page *page, unsigned long pfn,
-						unsigned int order)
+extern void __free_pages_bootmem(struct page *page, unsigned long pfn,
+					unsigned int order)
+{
 	unsigned int nr_pages = 1 << order;
 	struct page *p = page;
 	unsigned int loop;
