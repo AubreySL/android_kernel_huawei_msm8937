@@ -73,6 +73,21 @@ should not be more than 2000 */
 #define TDLS_CHANNEL_SWITCH_ENABLE  1
 #define TDLS_CHANNEL_SWITCH_DISABLE 2
 
+typedef struct {
+    /* Session ID */
+    tANI_U8 sessionId;
+    /*TDLS peer station id */
+    v_U8_t staId;
+    /* TDLS peer mac Address */
+    v_MACADDR_t peerMac;
+} tdlsConnInfo_t;
+typedef enum {
+    eTDLS_SUPPORT_NOT_ENABLED = 0,
+    eTDLS_SUPPORT_DISABLED, /* suppress implicit trigger and not respond to the peer */
+    eTDLS_SUPPORT_EXPLICIT_TRIGGER_ONLY, /* suppress implicit trigger, but respond to the peer */
+    eTDLS_SUPPORT_ENABLED, /* implicit trigger */
+} eTDLSSupportMode;
+
 enum tdls_disable_source {
     HDD_SET_TDLS_MODE_SOURCE_USER = 1,
     HDD_SET_TDLS_MODE_SOURCE_SCAN = 2,
@@ -94,13 +109,6 @@ typedef struct
     tANI_S32    rssi_trigger_threshold;
     tANI_S32    rssi_teardown_threshold;
 } tdls_config_params_t;
-
-typedef enum eTDLSSupportMode{
-    eTDLS_SUPPORT_NOT_ENABLED = 0,
-    eTDLS_SUPPORT_DISABLED, /* suppress implicit trigger and not respond to the peer */
-    eTDLS_SUPPORT_EXPLICIT_TRIGGER_ONLY, /* suppress implicit trigger, but respond to the peer */
-    eTDLS_SUPPORT_ENABLED, /* implicit trigger */
-} tDLSSupportMode;
 
 typedef enum eTDLSCapType{
     eTDLS_CAP_NOT_SUPPORTED = -1,
@@ -245,15 +253,7 @@ typedef struct _hddTdlsPeer_t {
     tANI_BOOLEAN   isOffChannelEstablished;
     tdls_req_params_t peerParams;
 } hddTdlsPeer_t;
-struct _tdlsConnInfo;
-typedef struct _tdlsConnInfo{
-    /* Session ID */
-    tANI_U8 sessionId;
-    /*TDLS peer station id */
-    v_U8_t staId;
-    /* TDLS peer mac Address */
-    v_MACADDR_t peerMac;
-} tdlsConnInfo_t;
+
 
 int wlan_hdd_sta_tdls_init(hdd_adapter_t *pAdapter);
 
@@ -525,7 +525,7 @@ wlan_hdd_change_tdls_mode(void *hdd_ctx)
 
 static inline void
 wlan_hdd_start_stop_tdls_source_timer(hdd_context_t *pHddCtx,
-                                      tDLSSupportMode tdls_mode)
+                                      eTDLSSupportMode tdls_mode)
 {
 }
 #endif
