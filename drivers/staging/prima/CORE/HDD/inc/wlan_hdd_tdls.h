@@ -100,7 +100,7 @@ typedef enum eTDLSSupportMode{
     eTDLS_SUPPORT_DISABLED, /* suppress implicit trigger and not respond to the peer */
     eTDLS_SUPPORT_EXPLICIT_TRIGGER_ONLY, /* suppress implicit trigger, but respond to the peer */
     eTDLS_SUPPORT_ENABLED, /* implicit trigger */
-} eTDLSSupportMode;
+} tDLSSupportMode;
 
 typedef enum eTDLSCapType{
     eTDLS_CAP_NOT_SUPPORTED = -1,
@@ -245,8 +245,8 @@ typedef struct _hddTdlsPeer_t {
     tANI_BOOLEAN   isOffChannelEstablished;
     tdls_req_params_t peerParams;
 } hddTdlsPeer_t;
-
-typedef struct tdlsConnInfo_t{
+struct _tdlsConnInfo;
+typedef struct _tdlsConnInfo{
     /* Session ID */
     tANI_U8 sessionId;
     /*TDLS peer station id */
@@ -525,7 +525,7 @@ wlan_hdd_change_tdls_mode(void *hdd_ctx)
 
 static inline void
 wlan_hdd_start_stop_tdls_source_timer(hdd_context_t *pHddCtx,
-                                      eTDLSSupportMode tdls_mode)
+                                      tDLSSupportMode tdls_mode)
 {
 }
 #endif
