@@ -95,7 +95,7 @@ typedef struct
     tANI_S32    rssi_teardown_threshold;
 } tdls_config_params_t;
 
-typedef enum {
+typedef enum eTDLSSupportMode{
     eTDLS_SUPPORT_NOT_ENABLED = 0,
     eTDLS_SUPPORT_DISABLED, /* suppress implicit trigger and not respond to the peer */
     eTDLS_SUPPORT_EXPLICIT_TRIGGER_ONLY, /* suppress implicit trigger, but respond to the peer */
@@ -246,7 +246,7 @@ typedef struct _hddTdlsPeer_t {
     tdls_req_params_t peerParams;
 } hddTdlsPeer_t;
 
-typedef struct {
+typedef struct tdlsConnInfo_t{
     /* Session ID */
     tANI_U8 sessionId;
     /*TDLS peer station id */
